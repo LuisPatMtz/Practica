@@ -1,0 +1,46 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    max-width: 600px;
+    margin: auto;
+    background-image: url("/img/fondo.jpg");
+    background-size: cover; 
+    background-repeat: no-repeat; 
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    margin-top: 70px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.8); 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); 
+    width: 100%;
+    overflow: hidden; 
+}
+
+.form {
+    display: flex;
+    gap: 13px;
+}
+
+form {
+    display: inline-block;
+}
+
+.btn {
+    font-family: 'Roboto', sans-serif;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    padding: 10px 20px;
+    border-radius: 20px;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: red;
+}

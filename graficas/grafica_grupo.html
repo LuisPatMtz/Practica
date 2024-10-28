@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Distribución de Alumnos por Grupo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/estilos/graficas.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Distribución de Alumnos por Grupo</h1>
+        <canvas id="graficaGrupos" width="100" height="100"></canvas>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        async function obtenerDatos() {
+            const response = await fetch('datos_grupo.php'); 
+            const data = await response.json();
+            return data;
+        }
+
+        // Crear la gráfica
+        async function crearGrafica() {
+            const datos = await obtenerDatos();
+
+            const ctx = document.getElementById('graficaGrupos').getContext('2d');
+            const graficaGrupos = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: datos.labels,
+                    datasets: [{
+                        label: 'Número de Alumnos',
+                        data: datos.data,
+                        backgroundColor: [
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)',
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                        ],
+                        borderColor: [
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)',
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        crearGrafica();
+    </script>
+</body>
+</html>

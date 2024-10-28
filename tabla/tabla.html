@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Estudiantes</title>
+    <link rel="stylesheet" href="/estilos/tabla.css">
+</head>
+<body>
+<h1>Tabla de Estudiantes</h1>
+<div class="container">
+    <table>
+        <thead>
+            <tr>
+                <th>Matrícula</th>
+                <th>Nombre Completo</th>
+                <th>Grupo</th>
+                <th>Teléfono</th>
+                <th>Correo Electrónico</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody id="student-table-body">
+            <!-- Se mandan a llamar los datos -->
+        </tbody>
+    </table>
+</div>
+
+<script>
+    fetch('tabla.php') // Consulta al backend
+        .then(response => response.text()) //Leer los registros y devuelve una cadena de texto
+        .then(data => {
+            document.getElementById('student-table-body').innerHTML = data;
+        });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modificar Estudiante</title>
+    <link rel="stylesheet" href="/estilos/registro.css">
+</head>
+<body>
+    <div class="registro-container">
+        <h1>Modificar Estudiante</h1>
+
+        <!-- Formulario para modificar los datos -->
+        <form id="modificarForm" action="modificar.php" method="POST">
+            <label for="matricula">Matrícula</label>
+            <input type="text" id="matricula" name="matricula" readonly>
+
+            <label for="nombre">Nombre Completo</label>
+            <input type="text" id="nombre" name="nombre" required>
+
+            <label for="grupo">Grupo</label>
+            <select id="grupo" name="grupo" required>
+                <option value="ISMA - 1">ISMA - 1</option>
+                <option value="ISMA - 3">ISMA - 3</option>
+                <option value="ISMA - 5">ISMA - 5</option>
+                <option value="ISBV - 5">ISBV - 5</option>
+                <option value="ISMA - 7">ISMA - 7</option>
+                <option value="ISBV - 7">ISBV - 7</option>
+            </select>
+
+            <label for="telefono">Teléfono</label>
+            <input type="text" id="telefono" name="telefono" required>
+
+            <label for="correo">Correo Electrónico</label>
+            <input type="email" id="correo" name="correo" required>
+
+            <label for="fecha_nacimiento">Fecha de nacimiento:</label>
+            <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required>
+
+            <label for="genero">Género:</label>
+            <select id="genero" name="genero" required>
+                <option value="">Selecciona una opción</option>
+                <option value="masculino">Masculino</option>
+                <option value="femenino">Femenino</option>
+                <option value="otro">Otro</option>
+            </select>
+            
+
+            <input type="submit" value="Actualizar">
+        </form>
+
+
+        <div id="mensaje"></div>
+    </div>
+
+    <script>
+        // Leer la url
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        // Función para cargar los datos en base a la lectura anterior
+        function cargarDatos() {
+            const matricula = getQueryParam('matricula');
+            if (matricula) {
+                fetch(`obtener_datos.php?matricula=${matricula}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            document.getElementById('matricula').value = data.matricula;
+                            document.getElementById('nombre').value = data.nombre;
+                            document.getElementById('grupo').value = data.grupo;
+                            document.getElementById('telefono').value = data.telefono;
+                            document.getElementById('correo').value = data.correo;
+                            document.getElementById('fecha_nacimiento').value = data.fecha_nacimiento;
+                            document.getElementById('genero').value = data.genero;
+                        } else {
+                            document.getElementById('mensaje').textContent = 'No se encontró al estudiante.';
+                        }
+                    });
+            } else {
+                document.getElementById('mensaje').textContent = 'No se proporcionó ninguna matrícula.';
+            }
+        }
+
+        // Ejecutar el script
+        window.onload = cargarDatos;
+    </script>
+</body>
+</html>

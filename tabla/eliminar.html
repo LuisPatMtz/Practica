@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eliminar Estudiante</title>
+    <link rel="stylesheet" href="/estilos/index.css">
+</head>
+<body>
+    <div class="container">
+        <h1>¿Estás seguro que deseas eliminar este registro?</h1>
+
+        <!-- Mensaje de confirmación -->
+        <p id="mensaje"></p>
+
+        <!-- Formulario con botones de confirmación -->
+        <form id="eliminarForm" method="POST">
+            <input type="hidden" id="matricula" name="matricula">
+
+            <button type="button" class="btn" id="btnSi">Sí</button>
+            <button type="button" class="btn" id="btnNo">No</button>
+        </form>
+    </div>
+
+    <script>
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        window.onload = function() {
+            const matricula = getQueryParam('matricula');
+            if (matricula) {
+                document.getElementById('matricula').value = matricula;
+            } else {
+                document.getElementById('mensaje').textContent = 'No se proporcionó ninguna matrícula.';
+            }
+        }
+
+        document.getElementById('btnSi').addEventListener('click', function() {
+            const matricula = document.getElementById('matricula').value;
+            if (matricula) {
+                fetch('eliminar.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: `matricula=${matricula}&confirmar=si`
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        document.getElementById('mensaje').textContent = 'Registro eliminado exitosamente.';
+                    } else {
+                        document.getElementById('mensaje').textContent = data.message;
+                    }
+                });
+            } else {
+                document.getElementById('mensaje').textContent = 'No se proporcionó ninguna matrícula.';
+            }
+        });
+
+        document.getElementById('btnNo').addEventListener('click', function() {
+            window.location.href = '/tabla/tabla.html';  // Redirige al usuario a la página principal o lista
+        });
+    </script>
+</body>
+</html>

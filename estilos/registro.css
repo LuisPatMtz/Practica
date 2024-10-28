@@ -1,0 +1,85 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-image: url("/img/fondo.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+.registro-container {
+    background-color: rgba(0, 0, 0, 0.8); 
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); 
+    margin: 20px;
+    margin-top: 96px;
+    color: white;
+
+}
+
+h1 {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 10px; 
+    text-align: center; 
+}
+
+label {
+    font-weight: bold;
+    color: white;
+    margin-top: 8px;
+    display: block;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="date"],
+select {
+    width: 100%;  
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1em;
+    box-sizing: border-box; 
+}
+
+input[type="submit"] {
+    font-family: 'Roboto', sans-serif;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 20px;
+    transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+    background-color: red;
+}
+
+
+@media (max-width: 600px) {
+    .registro-container h1 {
+        font-size: 1.5em;
+    }
+
+    .registro-container {
+        padding: 15px;
+    }
+
+    input[type="submit"] {
+        font-size: 1em;
+    }
+}

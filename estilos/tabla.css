@@ -1,0 +1,78 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    max-width: 1000px;
+    margin: auto;
+    background-image: url("/img/fondo.jpg");
+    background-size: cover; 
+    background-repeat: no-repeat; 
+}
+
+h1 {
+    margin-bottom: 10px; /* Reduce el margen inferior del h1 */
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    margin-top: 70px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.8); 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); 
+    width: 100%;
+    overflow: hidden; 
+}
+
+table {
+    width: 100%; 
+    border-collapse: collapse;
+    background-color: rgba(255, 255, 255, 0.1);
+    margin-top: 0; /* Elimina el margen superior */
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3); 
+    color: white; 
+}
+
+th {
+    background-color: #4CAF50; 
+    color: white; 
+}
+
+tr:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.table-actions {
+    display: flex;
+    gap: 10px; 
+}
+
+.btn {
+    font-family: 'Roboto', sans-serif;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none; 
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: red;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
+
+@media (max-width: 600px) {
+    th, td {
+        font-size: 12px; 
+    }
+}
