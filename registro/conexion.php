@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
 $username = "root"; 
-$password = "ac2c5f034b"; 
+$password = "ac5f0sad3s4b"; 
 $dbname = "registro_estudiantes"; 
 
 // Crear conexión
