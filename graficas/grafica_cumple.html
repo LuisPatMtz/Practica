@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Distribución de Alumnos por Mes de Cumpleaños</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../estilos/graficas.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Distribución de Alumnos por Mes de Cumpleaños</h1>
+        <canvas id="graficaCumple" width="100" height="100"></canvas>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        async function obtenerDatos() {
+            const response = await fetch('datos_cumple.php'); 
+            const data = await response.json();
+            return data;
+        }
+
+        // Crear la gráfica
+        async function crearGrafica() {
+            const datos = await obtenerDatos();
+
+            const ctx = document.getElementById('graficaCumple').getContext('2d');
+            const graficaCumple = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: datos.labels,
+                    datasets: [{
+                        label: 'Número de Cumpleaños',
+                        data: datos.data,
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 2,
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        crearGrafica();
+    </script>
+    
+    <center style="margin-top: 30px;">
+        <a href="graficas.html" style="color:white; text-decoration:none; background:#4CAF50; padding:12px 30px; border-radius:20px; display:inline-block;">← Volver</a>
+    </center>
+</body>
+</html>

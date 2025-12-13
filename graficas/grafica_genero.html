@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Distribución de Alumnos por Género</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../estilos/graficas.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Distribución de Alumnos por Género</h1>
+        <canvas id="graficaGenero" width="100" height="100"></canvas>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        async function obtenerDatos() {
+            const response = await fetch('datos_genero.php'); 
+            const data = await response.json();
+            return data;
+        }
+
+        // Crear la gráfica
+        async function crearGrafica() {
+            const datos = await obtenerDatos();
+
+            const ctx = document.getElementById('graficaGenero').getContext('2d');
+            const graficaGenero = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: datos.labels,
+                    datasets: [{
+                        label: 'Número de Alumnos',
+                        data: datos.data,
+                        backgroundColor: [
+                            'rgba(54, 162, 235, 0.6)',
+                            'rgba(255, 99, 132, 0.6)',
+                            'rgba(255, 206, 86, 0.6)',
+                        ],
+                        borderColor: [
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(255, 206, 86, 1)',
+                        ],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                        }
+                    }
+                }
+            });
+        }
+
+        crearGrafica();
+    </script>
+    
+    <center style="margin-top: 30px;">
+        <a href="graficas.html" style="color:white; text-decoration:none; background:#4CAF50; padding:12px 30px; border-radius:20px; display:inline-block;">← Volver</a>
+    </center>
+</body>
+</html>

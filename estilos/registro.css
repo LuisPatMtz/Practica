@@ -1,6 +1,6 @@
 body {
     font-family: 'Roboto', sans-serif;
-    background-image: url("/img/fondo.jpg");
+    background-image: url("../img/fondo.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -28,7 +28,7 @@ body {
 
 h1 {
     font-size: 2em;
-    color: #333;
+    color: #ffffff;
     margin-bottom: 10px; 
     text-align: center; 
 }
